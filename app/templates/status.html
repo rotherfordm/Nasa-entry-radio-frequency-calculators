@@ -36,9 +36,19 @@
       <td data-label="title">{{event.title}}</td>
       <td data-label="description">{{event.description}}</td>
       <td data-label="link">{{event.link}}</td>
-      <td data-label="categories">{{event.categories}}</td>
-      <td data-label="sources">{{event.sources}}</td>
-      <td data-label="geometries">{{event.geometries}}</td>
+      <td data-label="categories">{{event.categories[0]['title']}}</td>
+      <td data-label="sources"><a href="{{event.sources[0]['url']}}">{{event.sources[0]['id']}}</a> </td>
+
+      <td data-label="geometries">
+
+
+      {% for point in event.geometries %}
+        {{point.date}} | {{point.type}} | Latitude: {{point.coordinates[1]}} | Longitude: {{point.coordinates[0]}}
+        <br>
+      {% endfor %}
+
+      
+      </td>
     </tr>
 
 

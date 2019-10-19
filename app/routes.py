@@ -69,7 +69,7 @@ def compute_light_of_sight():
 
 @app.route('/status', methods=["GET", "POST"])
 def status():
-    r = requests.get(url="https://eonet.sci.gsfc.nasa.gov/api/v2.1/events")
+    r = requests.get(url="https://eonet.sci.gsfc.nasa.gov/api/v2.1/categories/10")
 
     return render_template('status.html', title='Status', events=r.json()['events'])
     
