@@ -1,6 +1,7 @@
 import logging
 import json
 import os
+import math
 
 from uuid import uuid4
 from app import app, db
@@ -47,3 +48,16 @@ def line_of_sight():
 @app.route("/radio_horizon", methods=["GET", "POST"])
 def radio_horizon():
     return render_template('radio_horizon.html', title='Radio Horizon Calculator')
+
+@app.route('/compute_radio_horizon', methods=["POST"])
+def compute_radio_horizon():
+    HTx = request.args.get('HTx')
+    HRx = request.args.get('HRx')
+
+    #Sqrt2* height of antenna transmitter + Sqrt2* height of antenna receiver
+    r = (math.sqrt(2) * float(HTx)) + (math.sqrt(2) * float(HRx))
+
+    return {"r": r, 'unit': 'miles'}
+    
+
+    

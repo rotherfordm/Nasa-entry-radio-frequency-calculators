@@ -17,7 +17,21 @@
     Formula
     </h4>
     <br />
-  <img src="http://latex.codecogs.com/gif.latex?r=\sqrt{(\variable{X2}-\variable{X1})^2 + (\variable{Y2}-\variable{Y1})^2}" border="0"/>
+
+      <!--
+
+Sqrt2* height of antenna transmitter + Sqrt2* height of antenna receiver.. 
+
+antenna height in feet.. 
+ r is in miles.. 
+value miles and kilometers.. 1mi= 1.609kms.
+
+
+\sqrt{2}\times\variable{HTx}+\variable{HRx}+\sqrt{2}\times\variable{HTx}
+    -->
+
+
+  <img src="http://latex.codecogs.com/gif.latex?r=\sqrt{2}\times\variable{HTx}+\sqrt{2}\times\variable{HTx}" border="0"/>
   <br />
 
     <h4 class="ui horizontal divider header">
@@ -31,46 +45,32 @@
       <div class="ui form">
 
         <div class="field">
-          <label>Longitude 1 (X1)</label>
+          <label>Height of antenna transmitter (HTx) in ft</label>
           <div class="ui left icon input">
-            <input type="text" placeholder="Longitude 1">
-            <i class="map pin icon"></i>
+            <input type="text" placeholder="HTx" id="HTx">
+            <i class="arrows alternate vertical pin icon"></i>
           </div>
         </div>
 
         <div class="field">
-        <label>Latitude 1 (Y1)</label>
+        <label>Height of antenna receiver (HRx) in ft</label>
           <div class="ui left icon input">
-            <input type="text" placeholder="Latitude 1">
-            <i class="map pin icon"></i>
+            <input type="text" placeholder="HRx" id="HRx">
+            <i class="arrows alternate vertical pin icon"></i>
           </div>
         </div>
 
         
-        <div class="field">
-        <label>Longitude 2 (X2)</label>
-          <div class="ui left icon input">
-            <input type="text" placeholder="Longitude 2">
-            <i class="map pin icon"></i>
-          </div>
-        </div>
 
-          <div class="field">
-        <label>Latitude 2 (Y2)</label>
-          <div class="ui left icon input">
-            <input type="text" placeholder="Latitude 2">
-            <i class="map pin icon"></i>
-          </div>
-        </div>
 
         
-        <div class="ui blue submit button">
+        <div class="ui blue button" id="compute">
         Calculate
         </div>
       </div>
     </div>
     <div class="middle aligned column">
-      <div class="ui big button">
+      <div id='result'>
         
       </div>
     </div>
@@ -92,5 +92,55 @@
 
 </body>
 
+
+
+<script>
+$( document ).ready(function() {
+     
+
+ $( "#compute" ).click(function() {
+      var HTx = $('#HTx').val();
+      var HRx = $('#HRx').val();
+      
+      console.log(HTx);
+      console.log(HRx);
+      $.ajax({ 
+        type : "POST", 
+        url : `compute_radio_horizon?HTx=${HTx}&HRx=${HRx}`, 
+        success : function(result) { 
+           
+           console.log(eval(result))
+
+           $('#result').html(`<p>
+           Result is:
+           <br />
+            <br />
+           ${  Math.round(eval(result).r * 100) / 100 } miles
+           <br />
+           or
+           <br />
+           ${ (Math.round((eval(result).r * 1.609) * 100) / 100) } kilometers
+           <p>
+           `);
+
+
+           
+        }, 
+        error : function(result) { 
+          console.log(result);
+        } 
+      }); 
+
+
+    });
+});
+
+
+
+
+
+
+
+</script>
 
 {% endblock %}
