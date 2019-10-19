@@ -72,4 +72,8 @@ def status():
     r = requests.get(url="https://eonet.sci.gsfc.nasa.gov/api/v2.1/categories/10")
 
     return render_template('status.html', title='Status', events=r.json()['events'])
+
+@app.route("/demo_anim", methods=["GET"])
+def demo_anim():
+    return render_template('demo_anim.html', title='Demo Animations')
     

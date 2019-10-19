@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% include 'nav.html' %}
+
+<body>
+
+  <div class="ui main container">
+    
+    <div>
+    <img class="logo" src="{{url_for("static",filename='logo.png')}}" style="width: 330px;">
+    </div>
+
+    </div>
+
+
+
+<div class="ui middle aligned center aligned grid ">
+<h3>Very High Frequency Propagation</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/NwR1n6Qdqsw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+</div>
+
+<br />
+<br />
+<br />
+<br />
+
+<div class="ui middle aligned center aligned grid ">
+<h3>Aircraft with VHF Propagation</h3>
+   <iframe width="560" height="315" src="https://www.youtube.com/embed/oTB4du9qXXA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+
+</body>
+
+
+{% endblock %}
