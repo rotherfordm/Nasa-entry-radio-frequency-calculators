@@ -1,0 +1,31 @@
+<head>
+<style type="text/css">
+  body {
+    background-color: #FFFFFF;
+  }
+  .ui.menu .item img.logo {
+    margin-right: 1.5em;
+  }
+  .main.container {
+    margin-top: 7em;
+  }
+  </style>
+</head>
+
+
+  <div class="ui fixed inverted menu">
+    <div class="ui container">
+      <a href="#" class="header item">
+        <img class="logo" src="{{url_for("static",filename='logo.png')}}" style="width: 90px;">
+      </a>
+      <a href="#" class="item">Home</a>
+      <div class="ui simple dropdown item">
+        Calculators <i class="dropdown icon"></i>
+        <div class="menu">
+          <a class="item" href="/line_of_sight">Line of Sight</a>
+          <a class="item" href="/radio_horizon">Radio Horizon</a>
+         
+        </div>
+      </div>
+    </div>
+  </div>
