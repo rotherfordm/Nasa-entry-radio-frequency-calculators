@@ -2,19 +2,16 @@ import logging
 import json
 import os
 import math
+import requests
 
 from uuid import uuid4
 from app import app, db
-
-from app.forms import AddStudentTransactionForm, LoginForm, RegistrationForm, EditUserForm, PublicEditUserForm, LandingPageEditForm, AddFeedbackForm, EncodeSubjectForm
-from app.models import StudentTransaction, User, WebsiteData, Feedback, Subject
-
 
 from config import Config
 
 from flask import (Flask, flash, g, jsonify, redirect, render_template,
                    request, url_for)
-from flask_login import current_user, login_required, login_user, logout_user
+
 from sqlalchemy import create_engine, desc, or_
 from sqlalchemy.orm import sessionmaker
 from werkzeug.exceptions import HTTPException
@@ -27,9 +24,6 @@ Session = sessionmaker(bind=engine)
 
 logging.basicConfig(level=logging.DEBUG)
 
-@app.before_request
-def before_request():
-    g.user = current_user
 
 @app.before_first_request
 def create_database():
@@ -73,4 +67,9 @@ def compute_light_of_sight():
     return {"r": r, 'unit': ''}
     
 
+@app.route('/status', methods=["GET", "POST"])
+def status():
+    r = requests.get(url="https://eonet.sci.gsfc.nasa.gov/api/v2.1/events")
+
+    return render_template('status.html', title='Status', events=r.json()['events'])
     

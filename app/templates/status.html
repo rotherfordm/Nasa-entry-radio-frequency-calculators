@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% include 'nav.html' %}
+
+<body>
+
+  <div class="ui main text">
+    
+    <div>
+    <img class="logo" src="{{url_for("static",filename='logo.png')}}" style="width: 330px;">
+    </div>
+    
+
+    <table class="ui celled table">
+  <thead>
+    <tr>
+        <th>id</th>
+        <th>title</th>
+        <th>description</th>
+        <th>link</th>
+        <th>categories</th>
+        <th>sources</th>
+        <th>geometries</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    
+    {% for event in events %}
+
+    
+    <tr>
+      <td data-label="id">{{event.id}}</td>
+      <td data-label="title">{{event.title}}</td>
+      <td data-label="description">{{event.description}}</td>
+      <td data-label="link">{{event.link}}</td>
+      <td data-label="categories">{{event.categories}}</td>
+      <td data-label="sources">{{event.sources}}</td>
+      <td data-label="geometries">{{event.geometries}}</td>
+    </tr>
+
+
+
+    {% endfor %}
+
+
+  </tbody>
+</table>
+
+
+
+        
+
+
+  </div>
+  <br />
+  <br />
+
+</body>
+
+
+{% endblock %}
