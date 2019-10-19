@@ -33,46 +33,46 @@
       <div class="ui form">
 
         <div class="field">
-          <label>Longitude 1 (X1)</label>
+          <label>Latitude 1 (X1)</label>
           <div class="ui left icon input">
-            <input type="text" placeholder="Longitude 1">
+            <input type="text" placeholder="Latitude 1" id="X1">
             <i class="map pin icon"></i>
           </div>
         </div>
 
         <div class="field">
-        <label>Latitude 1 (Y1)</label>
+        <label>Longitude 1 (Y1)</label>
           <div class="ui left icon input">
-            <input type="text" placeholder="Latitude 1">
+            <input type="text" placeholder="Longitude 1" id="Y1">
             <i class="map pin icon"></i>
           </div>
         </div>
 
         
         <div class="field">
-        <label>Longitude 2 (X2)</label>
+        <label>Latitude 2 (X2)</label>
           <div class="ui left icon input">
-            <input type="text" placeholder="Longitude 2">
+            <input type="text" placeholder="Latitude 2" id="X2">
             <i class="map pin icon"></i>
           </div>
         </div>
 
           <div class="field">
-        <label>Latitude 2 (Y2)</label>
+        <label>Longitude 2 (Y2)</label>
           <div class="ui left icon input">
-            <input type="text" placeholder="Latitude 2">
+            <input type="text" placeholder="Longitude 2" id="Y2">
             <i class="map pin icon"></i>
           </div>
         </div>
 
         
-        <div class="ui blue submit button">
+        <div class="ui blue button" id="compute">
         Calculate
         </div>
       </div>
     </div>
     <div class="middle aligned column">
-      <div class="ui big button">
+      <div id='result'>
         
       </div>
     </div>
@@ -91,6 +91,53 @@
 
 
   </div>
+
+  <script>
+
+$( document ).ready(function() {
+     
+
+ $( "#compute" ).click(function() {
+      var X1 = $('#X1').val();
+      var Y1 = $('#Y1').val();
+      var X2 = $('#X2').val();
+      var Y2 = $('#Y2').val();
+      
+      
+      $.ajax({ 
+        type : "POST", 
+        url : `compute_light_of_sight?X1=${X1}&Y1=${Y1}&X2=${X2}&Y2=${Y2}`, 
+        success : function(result) { 
+           
+           console.log(eval(result))
+
+           $('#result').html(`<p>
+           Result is:
+           <br />
+            <br />
+           ${  Math.round(eval(result).r * 100) / 100 }
+           
+           `);
+
+
+           
+        }, 
+        error : function(result) { 
+          console.log(result);
+        } 
+      }); 
+
+
+    });
+});
+
+
+
+
+
+
+  </script>
+  
 
 </body>
 

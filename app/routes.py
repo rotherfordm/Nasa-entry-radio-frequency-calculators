@@ -58,6 +58,19 @@ def compute_radio_horizon():
     r = (math.sqrt(2) * float(HTx)) + (math.sqrt(2) * float(HRx))
 
     return {"r": r, 'unit': 'miles'}
+
+@app.route('/compute_light_of_sight', methods=["POST"])
+def compute_light_of_sight():
+
+    X1 = float(request.args.get("X1"))
+    Y1 = float(request.args.get("Y1"))
+    X2 = float(request.args.get("X2"))
+    Y2 = float(request.args.get("Y2"))
+
+    
+    r = (math.sqrt( ((X2 - X1)**2) + ((Y2 - Y1)**2) ))
+
+    return {"r": r, 'unit': ''}
     
 
     
