@@ -83,4 +83,10 @@ def map():
     return render_template('map.html', title='Map')
 
 
+@app.route('/storm_data', methods=["GET"])
+def storm_data():
+    r = requests.get(url="https://eonet.sci.gsfc.nasa.gov/api/v2.1/categories/10")
+
+    return jsonify(r.json()['events'])
+
     

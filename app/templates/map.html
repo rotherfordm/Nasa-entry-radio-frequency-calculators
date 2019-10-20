@@ -24,51 +24,33 @@
 <div class="ui main text container">
 
   
-    <div class="ui two column very relaxed stackable grid">
-    <div class="column">
       <div class="ui form">
 
         <div class="field">
-          <label>Latitude 1 (X1)</label>
+          <label>Antenna 1</label>
           <div class="ui left icon input">
-            <input type="text" placeholder="Latitude 1" id="X1">
-            <i class="map pin icon"></i>
+            <input type="text" placeholder="Antenna 1" id="Antenna1">
+            <i class="wifi icon"></i>
           </div>
         </div>
 
         <div class="field">
-        <label>Longitude 1 (Y1)</label>
+          <label>Antenna 2</label>
           <div class="ui left icon input">
-            <input type="text" placeholder="Longitude 1" id="Y1">
-            <i class="map pin icon"></i>
+            <input type="text" placeholder="Antenna 2" id="Antenna2">
+            <i class="wifi icon"></i>
           </div>
         </div>
 
-        
-        <div class="field">
-        <label>Latitude 2 (X2)</label>
-          <div class="ui left icon input">
-            <input type="text" placeholder="Latitude 2" id="X2">
-            <i class="map pin icon"></i>
-          </div>
-        </div>
-
-          <div class="field">
-        <label>Longitude 2 (Y2)</label>
-          <div class="ui left icon input">
-            <input type="text" placeholder="Longitude 2" id="Y2">
-            <i class="map pin icon"></i>
-          </div>
-        </div>
 
       </div>
-    </div>
 
-  </div>
     
-    <div class="ui blue button" onclick="drawOnclick();">Draw</div>
 
-  
+<br />
+    <div class="ui blue button" onclick="drawCircle(10.720150, 122.562103, 500*29);">Submit</div>
+
+    <div class="ui blue button" onclick="showStorms()">Test</div>
 
 </div>
 </body>
@@ -105,7 +87,61 @@
         map.fitBounds(antennasCircle.getBounds());
     }
 
-  
+    function drawCircle(lat, lng, radius) {
+        var antennasCircle = new google.maps.Circle({
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: "#FF0000",
+        fillOpacity: 0.35,
+        map: map,
+        center: {
+            lat: lat,
+            lng: lng
+        },
+        radius: radius
+        });
+        map.fitBounds(antennasCircle.getBounds());
+    }
+
+    function showStorms() {
+        $.ajax({ 
+                type : "GET", 
+                url : `storm_data`, 
+                success : function(result) { 
+                
+                console.log(eval(result)[0].geometries[0].coordinates[0]); // Longitude
+                console.log(eval(result)[0].geometries[0].coordinates[1]); // Latitude
+                console.log(eval(result)[0].geometries[1].coordinates[0]); // Longitude
+                console.log(eval(result)[0].geometries[1].coordinates[1]); // Latitude
+
+                const Longitude1 = eval(result)[0].geometries[0].coordinates[0];
+                const Latitude1 = eval(result)[0].geometries[0].coordinates[1];
+                const Longitude2 = eval(result)[0].geometries[1].coordinates[0];
+                const Latitude2 = eval(result)[0].geometries[1].coordinates[1];
+
+
+                //quick calculation
+                var X = (Latitude1 + Latitude2) / 2
+                var Y = (Longitude1 + Longitude2) / 2
+
+                //var D = Math.sqrt(Math.pow((Latitude1 - Latitude2), 2) + Math.pow((Longitude1 - Longitude2), 2))
+
+                //var _Radius = D/2
+                
+                drawCircle(X, Y,   1000000 )
+
+                
+
+                
+                }, 
+                error : function(result) { 
+                console.log(result);
+                } 
+            }); 
+        
+    }
+
 
 
     </script>
