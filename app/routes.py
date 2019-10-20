@@ -61,7 +61,7 @@ def compute_distance():
     Y2 = float(request.args.get("Y2"))
 
     
-    r = (math.sqrt( ((X2 - X1)**2) + ((Y2 - Y1)**2) ))
+    r = (math.sqrt( ((X2 - X1)**2) + ((Y2 - Y1)**2) )) * 100
 
     return {"r": r, 'unit': ''}
     
