@@ -76,4 +76,11 @@ def status():
 @app.route("/demo_anim", methods=["GET"])
 def demo_anim():
     return render_template('demo_anim.html', title='Demo Animations')
+
+
+@app.route("/map", methods=["GET"])
+def map():
+    return render_template('map.html', title='Map')
+
+
     
