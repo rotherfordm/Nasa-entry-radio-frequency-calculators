@@ -75,7 +75,7 @@
       <div class="field">
           <label>Height of antenna transmitter (HTx) in ft</label>
           <div class="ui left icon input">
-            <input type="text" placeholder="HTx" id="HTx">
+            <input type="text" placeholder="HTx" id="HTx" value="60">
             <i class="arrows alternate vertical pin icon"></i>
           </div>
         </div>
@@ -83,7 +83,7 @@
         <div class="field">
         <label>Height of antenna receiver (HRx) in ft</label>
           <div class="ui left icon input">
-            <input type="text" placeholder="HRx" id="HRx">
+            <input type="text" placeholder="HRx" id="HRx" value="60">
             <i class="arrows alternate vertical pin icon"></i>
           </div>
         </div>
@@ -104,6 +104,8 @@
 <br />
 
     <div class="ui blue button" onclick="showAntennasArea()">Show Antenna Area</div>
+
+    <div class="ui blue button" onclick="calculateSignalRange()">Calculate Signal Range</div>
 
 
     <div class="ui blue button" onclick="showStorms()">Test Storm</div>
@@ -222,11 +224,11 @@
            console.log(eval(result))
 
            $('#result_distance').html(`<p>
-           Result is (distance):
+           Distance Result is:
            <br />
-            <br />
-           ${  Math.round(eval(result).r * 100) / 100 }
-           
+           ${  Math.round(eval(result).r * 100) / 100 } kilometers
+            <br />    
+            <br />         
            `);
 
 
@@ -240,6 +242,40 @@
 
     }
 
+
+    function calculateSignalRange() {
+      var HTx = parseFloat(document.getElementById('HTx').value);
+      var HRx = parseFloat(document.getElementById('HRx').value);
+
+      console.log(HTx);
+      console.log(HRx);
+      $.ajax({ 
+        type : "POST", 
+        url : `compute_signal_range?HTx=${HTx}&HRx=${HRx}`, 
+        success : function(result) { 
+           
+           console.log(eval(result))
+
+           $('#result_signal_range').html(`<p>
+           Signal Result is:
+            <br />
+           ${  Math.round(eval(result).r * 100) / 100 } miles
+           <br />
+           or
+           <br />
+           ${ (Math.round((eval(result).r * 1.609) * 100) / 100) } kilometers
+           <p>
+           `);
+
+
+           
+        }, 
+        error : function(result) { 
+          console.log(result);
+        } 
+     }); 
+
+    }
 
 
     </script>
