@@ -10,21 +10,33 @@
   <div class="ui main text container">
   <br />
   
-  <h1>Line of Sight Calculator</h1>
+  <h1>Signal Range Calculator</h1>
   <br />
     <h4 class="ui horizontal divider header">
     <i class="balance scale icon"></i>
     Formula
     </h4>
     <br />
-  
-  <img src="http://latex.codecogs.com/gif.latex?r=\sqrt{(\variable{X2}-\variable{X1})^2 + (\variable{Y2}-\variable{Y1})^2}" border="0"/>
-  
+
+      <!--
+
+Sqrt2* height of antenna transmitter + Sqrt2* height of antenna receiver.. 
+
+antenna height in feet.. 
+ r is in miles.. 
+value miles and kilometers.. 1mi= 1.609kms.
+
+
+\sqrt{2}\times\variable{HTx}+\variable{HRx}+\sqrt{2}\times\variable{HTx}
+    -->
+
+
+  <img src="http://latex.codecogs.com/gif.latex?r=\sqrt{2}\times\variable{HTx}+\sqrt{2}\times\variable{HTx}" border="0"/>
   <br />
 
     <h4 class="ui horizontal divider header">
         <i class="calculator icon"></i>
-        Calculator
+       Signal Range Calculator
     </h4>
 
     <div class="ui placeholder segment">
@@ -33,37 +45,23 @@
       <div class="ui form">
 
         <div class="field">
-          <label>Latitude 1 (X1)</label>
+          <label>Height of antenna transmitter (HTx) in ft</label>
           <div class="ui left icon input">
-            <input type="text" placeholder="Latitude 1" id="X1">
-            <i class="map pin icon"></i>
+            <input type="text" placeholder="HTx" id="HTx">
+            <i class="arrows alternate vertical pin icon"></i>
           </div>
         </div>
 
         <div class="field">
-        <label>Longitude 1 (Y1)</label>
+        <label>Height of antenna receiver (HRx) in ft</label>
           <div class="ui left icon input">
-            <input type="text" placeholder="Longitude 1" id="Y1">
-            <i class="map pin icon"></i>
+            <input type="text" placeholder="HRx" id="HRx">
+            <i class="arrows alternate vertical pin icon"></i>
           </div>
         </div>
 
         
-        <div class="field">
-        <label>Latitude 2 (X2)</label>
-          <div class="ui left icon input">
-            <input type="text" placeholder="Latitude 2" id="X2">
-            <i class="map pin icon"></i>
-          </div>
-        </div>
 
-          <div class="field">
-        <label>Longitude 2 (Y2)</label>
-          <div class="ui left icon input">
-            <input type="text" placeholder="Longitude 2" id="Y2">
-            <i class="map pin icon"></i>
-          </div>
-        </div>
 
         
         <div class="ui blue button" id="compute">
@@ -92,21 +90,23 @@
 
   </div>
 
-  <script>
+</body>
 
+
+
+<script>
 $( document ).ready(function() {
      
 
  $( "#compute" ).click(function() {
-      var X1 = $('#X1').val();
-      var Y1 = $('#Y1').val();
-      var X2 = $('#X2').val();
-      var Y2 = $('#Y2').val();
+      var HTx = $('#HTx').val();
+      var HRx = $('#HRx').val();
       
-      
+      console.log(HTx);
+      console.log(HRx);
       $.ajax({ 
         type : "POST", 
-        url : `compute_light_of_sight?X1=${X1}&Y1=${Y1}&X2=${X2}&Y2=${Y2}`, 
+        url : `compute_signal_range?HTx=${HTx}&HRx=${HRx}`, 
         success : function(result) { 
            
            console.log(eval(result))
@@ -115,8 +115,12 @@ $( document ).ready(function() {
            Result is:
            <br />
             <br />
-           ${  Math.round(eval(result).r * 100) / 100 }
-           
+           ${  Math.round(eval(result).r * 100) / 100 } miles
+           <br />
+           or
+           <br />
+           ${ (Math.round((eval(result).r * 1.609) * 100) / 100) } kilometers
+           <p>
            `);
 
 
@@ -125,10 +129,13 @@ $( document ).ready(function() {
         error : function(result) { 
           console.log(result);
         } 
-      }); 
+     }); 
 
 
-    });
+  });
+
+
+  
 });
 
 
@@ -136,10 +143,7 @@ $( document ).ready(function() {
 
 
 
-  </script>
-  
 
-</body>
-
+</script>
 
 {% endblock %}

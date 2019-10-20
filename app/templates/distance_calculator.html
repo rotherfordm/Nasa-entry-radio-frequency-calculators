@@ -10,28 +10,16 @@
   <div class="ui main text container">
   <br />
   
-  <h1>Radio Horizon Calculator</h1>
+  <h1>Distance Calculator</h1>
   <br />
     <h4 class="ui horizontal divider header">
     <i class="balance scale icon"></i>
     Formula
     </h4>
     <br />
-
-      <!--
-
-Sqrt2* height of antenna transmitter + Sqrt2* height of antenna receiver.. 
-
-antenna height in feet.. 
- r is in miles.. 
-value miles and kilometers.. 1mi= 1.609kms.
-
-
-\sqrt{2}\times\variable{HTx}+\variable{HRx}+\sqrt{2}\times\variable{HTx}
-    -->
-
-
-  <img src="http://latex.codecogs.com/gif.latex?r=\sqrt{2}\times\variable{HTx}+\sqrt{2}\times\variable{HTx}" border="0"/>
+  
+  <img src="http://latex.codecogs.com/gif.latex?r=\sqrt{(\variable{X2}-\variable{X1})^2 + (\variable{Y2}-\variable{Y1})^2}" border="0"/>
+  
   <br />
 
     <h4 class="ui horizontal divider header">
@@ -45,23 +33,37 @@ value miles and kilometers.. 1mi= 1.609kms.
       <div class="ui form">
 
         <div class="field">
-          <label>Height of antenna transmitter (HTx) in ft</label>
+          <label>Latitude 1 (X1)</label>
           <div class="ui left icon input">
-            <input type="text" placeholder="HTx" id="HTx">
-            <i class="arrows alternate vertical pin icon"></i>
+            <input type="text" placeholder="Latitude 1" id="X1" value="43.653225">
+            <i class="map pin icon"></i>
           </div>
         </div>
 
         <div class="field">
-        <label>Height of antenna receiver (HRx) in ft</label>
+        <label>Longitude 1 (Y1)</label>
           <div class="ui left icon input">
-            <input type="text" placeholder="HRx" id="HRx">
-            <i class="arrows alternate vertical pin icon"></i>
+            <input type="text" placeholder="Longitude 1" id="Y1" value="-79.383186">
+            <i class="map pin icon"></i>
           </div>
         </div>
 
         
+        <div class="field">
+        <label>Latitude 2 (X2)</label>
+          <div class="ui left icon input">
+            <input type="text" placeholder="Latitude 2" id="X2" value="45.421532" >
+            <i class="map pin icon"></i>
+          </div>
+        </div>
 
+          <div class="field">
+        <label>Longitude 2 (Y2)</label>
+          <div class="ui left icon input">
+            <input type="text" placeholder="Longitude 2" id="Y2" value="-75.697189">
+            <i class="map pin icon"></i>
+          </div>
+        </div>
 
         
         <div class="ui blue button" id="compute">
@@ -90,23 +92,21 @@ value miles and kilometers.. 1mi= 1.609kms.
 
   </div>
 
-</body>
+  <script>
 
-
-
-<script>
 $( document ).ready(function() {
      
 
  $( "#compute" ).click(function() {
-      var HTx = $('#HTx').val();
-      var HRx = $('#HRx').val();
+      var X1 = $('#X1').val();
+      var Y1 = $('#Y1').val();
+      var X2 = $('#X2').val();
+      var Y2 = $('#Y2').val();
       
-      console.log(HTx);
-      console.log(HRx);
+      
       $.ajax({ 
         type : "POST", 
-        url : `compute_radio_horizon?HTx=${HTx}&HRx=${HRx}`, 
+        url : `compute_distance?X1=${X1}&Y1=${Y1}&X2=${X2}&Y2=${Y2}`, 
         success : function(result) { 
            
            console.log(eval(result))
@@ -115,12 +115,8 @@ $( document ).ready(function() {
            Result is:
            <br />
             <br />
-           ${  Math.round(eval(result).r * 100) / 100 } miles
-           <br />
-           or
-           <br />
-           ${ (Math.round((eval(result).r * 1.609) * 100) / 100) } kilometers
-           <p>
+           ${  Math.round(eval(result).r * 100) / 100 }
+           
            `);
 
 
@@ -129,13 +125,10 @@ $( document ).ready(function() {
         error : function(result) { 
           console.log(result);
         } 
-     }); 
+      }); 
 
 
-  });
-
-
-  
+    });
 });
 
 
@@ -143,7 +136,10 @@ $( document ).ready(function() {
 
 
 
+  </script>
+  
 
-</script>
+</body>
+
 
 {% endblock %}

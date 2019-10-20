@@ -25,32 +25,95 @@
 
   
       <div class="ui form">
+      <br />
+      <br />
+         <h4 class="ui horizontal divider header">
+        <i class="calculator icon"></i>
+        Location Calculator
+     </h4>
+        <h2>Antenna 1 Position</h2>
 
         <div class="field">
-          <label>Antenna 1</label>
+          <label>Latitude</label>
           <div class="ui left icon input">
-            <input type="text" placeholder="Antenna 1" id="Antenna1">
+            <input type="text" placeholder="Latitude" id="Antenna1X" value="43.653225">
             <i class="wifi icon"></i>
           </div>
         </div>
 
         <div class="field">
-          <label>Antenna 2</label>
+          <label>Longitude</label>
           <div class="ui left icon input">
-            <input type="text" placeholder="Antenna 2" id="Antenna2">
+            <input type="text" placeholder="Longitude" id="Antenna1Y" value="-79.383186">
             <i class="wifi icon"></i>
+          </div>
+        </div>
+
+        <h2>Antenna 2 Position</h2>
+        
+        <div class="field">
+          <label>Latitude</label>
+          <div class="ui left icon input">
+            <input type="text" placeholder="Latitude" id="Antenna2X" value="45.421532">
+            <i class="wifi icon"></i>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Longitude</label>
+          <div class="ui left icon input">
+            <input type="text" placeholder="Longitude" id="Antenna2Y" value="-75.697189">
+            <i class="wifi icon"></i>
+          </div>
+        </div>
+
+        <h4 class="ui horizontal divider header">
+        <i class="calculator icon"></i>
+        Signal Range Calculator
+     </h4>
+        
+      <div class="field">
+          <label>Height of antenna transmitter (HTx) in ft</label>
+          <div class="ui left icon input">
+            <input type="text" placeholder="HTx" id="HTx">
+            <i class="arrows alternate vertical pin icon"></i>
+          </div>
+        </div>
+
+        <div class="field">
+        <label>Height of antenna receiver (HRx) in ft</label>
+          <div class="ui left icon input">
+            <input type="text" placeholder="HRx" id="HRx">
+            <i class="arrows alternate vertical pin icon"></i>
           </div>
         </div>
 
 
       </div>
 
+
+
+
+
+
+
+      
+
     
 
 <br />
-    <div class="ui blue button" onclick="drawCircle(10.720150, 122.562103, 500*29);">Submit</div>
 
-    <div class="ui blue button" onclick="showStorms()">Test</div>
+    <div class="ui blue button" onclick="showAntennasArea()">Show Antenna Area</div>
+
+
+    <div class="ui blue button" onclick="showStorms()">Test Storm</div>
+
+    <br />
+    <br />
+    <div id="result_distance"></div>
+    <div id="result_signal_range"></div>
+    <br />
+    <br />
 
 </div>
 </body>
@@ -87,12 +150,12 @@
         map.fitBounds(antennasCircle.getBounds());
     }
 
-    function drawCircle(lat, lng, radius) {
+    function drawCircle(lat, lng, radius, strokeColor, fillColor) {
         var antennasCircle = new google.maps.Circle({
-        strokeColor: "#FF0000",
+        strokeColor: strokeColor, //#FF0000
         strokeOpacity: 0.8,
         strokeWeight: 2,
-        fillColor: "#FF0000",
+        fillColor: fillColor, //#FF0000
         fillOpacity: 0.35,
         map: map,
         center: {
@@ -129,10 +192,7 @@
 
                 //var _Radius = D/2
                 
-                drawCircle(X, Y,   1000000 )
-
-                
-
+                drawCircle(X, Y, 1000000, '#FF0000' , '#FF0000')
                 
                 }, 
                 error : function(result) { 
@@ -140,6 +200,44 @@
                 } 
             }); 
         
+    }
+
+    function showAntennasArea()
+    {
+        var X1 = parseFloat(document.getElementById('Antenna1X').value);
+        var Y1 = parseFloat(document.getElementById('Antenna1Y').value);
+        var X2 = parseFloat(document.getElementById('Antenna2X').value);
+        var Y2 = parseFloat(document.getElementById('Antenna2Y').value);
+
+        drawCircle(X1, Y1,   90000, 'green', 'green')
+
+        drawCircle(X2, Y2,   90000, 'green', 'green')
+      
+      
+      $.ajax({ 
+        type : "POST", 
+        url : `compute_distance?X1=${X1}&Y1=${Y1}&X2=${X2}&Y2=${Y2}`, 
+        success : function(result) { 
+           
+           console.log(eval(result))
+
+           $('#result_distance').html(`<p>
+           Result is (distance):
+           <br />
+            <br />
+           ${  Math.round(eval(result).r * 100) / 100 }
+           
+           `);
+
+
+           
+        }, 
+        error : function(result) { 
+          console.log(result);
+        } 
+      }); 
+
+
     }
 
 
@@ -150,6 +248,23 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCV47mHaKm2W7oFPJusEqpYC36UfXj1fxU&callback=initMap"
     async defer>
    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </script>
  
 

@@ -35,26 +35,25 @@ def create_database():
 def index():
     return render_template('index.html', title='Home')
 
-@app.route("/line_of_sight", methods=["GET", "POST"])
-def line_of_sight():
-    return render_template('line_of_sight.html', title='Line of Sight Calculator')
+@app.route("/signal_range", methods=["GET", "POST"])
+def signal_range():
+    return render_template('signal_range.html', title='Signal Range Calculator')
 
-@app.route("/radio_horizon", methods=["GET", "POST"])
-def radio_horizon():
-    return render_template('radio_horizon.html', title='Radio Horizon Calculator')
+@app.route("/distance_calculator", methods=["GET", "POST"])
+def distance_calculator():
+    return render_template('distance_calculator.html', title='Distance Calculator')
 
-@app.route('/compute_radio_horizon', methods=["POST"])
-def compute_radio_horizon():
+@app.route('/compute_signal_range', methods=["POST"])
+def compute_signal_range():
     HTx = request.args.get('HTx')
     HRx = request.args.get('HRx')
 
-    #Sqrt2* height of antenna transmitter + Sqrt2* height of antenna receiver
     r = (math.sqrt(2) * float(HTx)) + (math.sqrt(2) * float(HRx))
 
     return {"r": r, 'unit': 'miles'}
 
-@app.route('/compute_light_of_sight', methods=["POST"])
-def compute_light_of_sight():
+@app.route('/compute_distance', methods=["POST"])
+def compute_distance():
 
     X1 = float(request.args.get("X1"))
     Y1 = float(request.args.get("Y1"))
