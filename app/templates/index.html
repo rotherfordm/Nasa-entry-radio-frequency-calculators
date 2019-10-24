@@ -6,36 +6,215 @@
 
 <body>
 
-  <div class="ui main text container">
-    
-    <div>
-    <img class="logo" src="{{url_for("static",filename='logo.png')}}" style="width: 330px;">
-    </div>
-    
-    <p><strong>TECHnology</strong> that is <strong>NO</strong>urishing from the <strong>Ph</strong>ilippines | Innovation for Real-Life.</p>
+<style>
+  .main-content {
+	position: absolute;
+	top: 50%;
+	right: 50%;
+	transform: translate(50%,-50%);
+	color: $text;
+	max-width: 90%;
+	padding: 2em 3em;
+	
+	
+	font-family: 'Open Sans', sans-serif;
+  }
 
-    <p><strong>Nico G. Guarnes | Rotherford P. Marmibe | Giovanni Gerard A. Araque</strong></p>
-    
-    <p><strong>WHO ARE WE?</strong></p>
+  canvas {
+  display: block;
+  vertical-align: bottom;
+  }
+</style>
 
-    <p>We are technologists that have diverse background in information and communications. </p>
+  
 
-    <p>Two of our members are travelers who have seen various communities that are depraved of information. Currently, we have applied ICT in various projects in the region. </p>
-
-    <p>We hope that our existence and our experience may have more impact to the people.</p>
-
-<br/>
-<br/>
-<div class="ui middle aligned center aligned grid">
-
-    <img class="logo" src="{{url_for("static",filename='zzzzzzz.jpg')}}" style="width: 650px;">
+<!-- particles.js container -->
+<div class="main">
+  <div id="particles-js"></div>
 </div>
 
+
+<div class="ui main container main-content" >
+    
+  <div class="ui center aligned header">
+    <img src="{{url_for("static",filename='logo.png')}}" style="width: 550px;">
   </div>
-  <br />
-  <br />
+
+  <div class="ui middle aligned center aligned grid">
+        <img class="logo" src="{{url_for("static",filename='72975453_141857087193195_3637926746700906496_n.jpg')}}" style="width: 600px; margin-bottom: 20px;   border-radius: 10%;">
+    </div>
+  
+
+  <div class="ui one column stackable center aligned page grid">
+   <div class="column twelve wide">
+      <p>
+        <strong>TECHnology</strong>that is <strong>NO</strong>urishing from the <strong>Ph</strong>ilippines
+        <div class="ui divider"></div>
+        <h3>Innovation for Real-Life.</h3>
+      </p>
+
+      <p>
+        <strong>Nico G. Guarnes | Rotherford P. Marmibe | Giovanni Gerard A. Araque</strong>
+      </p>
+      <div class="ui divider"></div>
+
+      <p><strong>WHO ARE WE?</strong></p>
+
+      <p>We are technologists that have diverse background in information and communications. </p>
+
+      <p>Two of our members are travelers who have seen various communities that are depraved of information. Currently, we have applied ICT in various projects in the region. </p>
+
+      <p>We hope that our existence and our experience may have more impact to the people.</p>
+   </div>
+
+  </div>
+  
+</div>
+
 
 </body>
+
+<!-- scripts -->
+<script src="{{url_for("static",filename='js/particles.js')}}"></script>
+<!-- <script src="{{url_for("static",filename='js/particle-app.js')}}"></script> -->
+
+<script>
+  particlesJS(
+    "particles-js",
+    {
+      "particles": {
+        "number": {
+          "value": 160,
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": {
+          "value": "#000000"
+        },
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#000000"
+          },
+          "polygon": {
+            "nb_sides": 5
+          },
+          "image": {
+            "src": "img/github.svg",
+            "width": 100,
+            "height": 100
+          }
+        },
+        "opacity": {
+          "value": 1,
+          "random": true,
+          "anim": {
+            "enable": true,
+            "speed": 1,
+            "opacity_min": 0,
+            "sync": false
+          }
+        },
+        "size": {
+          "value": 3,
+          "random": true,
+          "anim": {
+            "enable": false,
+            "speed": 4,
+            "size_min": 0.3,
+            "sync": false
+          }
+        },
+        "line_linked": {
+          "enable": false,
+          "distance": 150,
+          "color": "#ffffff",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 1,
+          "direction": "none",
+          "random": true,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false,
+          "attract": {
+            "enable": false,
+            "rotateX": 600,
+            "rotateY": 600
+          }
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "bubble"
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "repulse"
+          },
+          "resize": true
+        },
+        "modes": {
+          "grab": {
+            "distance": 400,
+            "line_linked": {
+              "opacity": 1
+            }
+          },
+          "bubble": {
+            "distance": 250,
+            "size": 0,
+            "duration": 2,
+            "opacity": 0,
+            "speed": 3
+          },
+          "repulse": {
+            "distance": 400,
+            "duration": 0.4
+          },
+          "push": {
+            "particles_nb": 4
+          },
+          "remove": {
+            "particles_nb": 2
+          }
+        }
+      },
+      "retina_detect": true
+    }
+  );
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.js"></script>
+<script>
+  $(document).ready(function() {
+    // fix menu when passed
+    $(".masthead").visibility({
+      once: false,
+      onBottomPassed: function() {
+        $(".fixed.menu").transition("fade in");
+      },
+      onBottomPassedReverse: function() {
+        $(".fixed.menu").transition("fade out");
+      }
+    });
+    // create sidebar and attach to menu open
+    $(".ui.sidebar").sidebar("attach events", ".toc.item");
+  });
+</script>
+
+
+
 
 
 {% endblock %}
