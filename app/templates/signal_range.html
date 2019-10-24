@@ -10,85 +10,83 @@
   <div class="ui main text container">
   <br />
   
-  <h1>Signal Range Calculator</h1>
-  <br />
-    <h4 class="ui horizontal divider header">
-    <i class="balance scale icon"></i>
-    Formula
-    </h4>
-    <br />
+  <h1 class="ui center aligned header">
+    Signal Range Calculator
+  </h1>
 
-      <!--
+   <div class="ui middle aligned center aligned grid">
+      <div class="column twelve wide">
+        <br />
+        <h4 class="ui horizontal divider header">
+        <i class="balance scale icon"></i>
+        Formula
+        </h4>
+        <br />
+      
+      <img src="http://latex.codecogs.com/gif.latex?r=\sqrt{2}\times\variable{HTx}+\sqrt{2}\times\variable{HTx}" border="0"/>
+      <br />
 
-Sqrt2* height of antenna transmitter + Sqrt2* height of antenna receiver.. 
+        <h4 class="ui horizontal divider header">
+            <i class="calculator icon"></i>
+          Signal Range Calculator
+        </h4>
 
-antenna height in feet.. 
- r is in miles.. 
-value miles and kilometers.. 1mi= 1.609kms.
+        <div class="ui placeholder segment">
+      <div class="ui two column very relaxed stackable grid">
+        <div class="column">
+          <div class="ui form">
+
+            <div class="field">
+              <label>Height of antenna transmitter (HTx) in ft</label>
+              <div class="ui left icon input">
+                <input type="text" placeholder="HTx" id="HTx">
+                <i class="arrows alternate vertical pin icon"></i>
+              </div>
+            </div>
+
+            <div class="field">
+            <label>Height of antenna receiver (HRx) in ft</label>
+              <div class="ui left icon input">
+                <input type="text" placeholder="HRx" id="HRx">
+                <i class="arrows alternate vertical pin icon"></i>
+              </div>
+            </div>
+
+            
 
 
-\sqrt{2}\times\variable{HTx}+\variable{HRx}+\sqrt{2}\times\variable{HTx}
-    -->
-
-
-  <img src="http://latex.codecogs.com/gif.latex?r=\sqrt{2}\times\variable{HTx}+\sqrt{2}\times\variable{HTx}" border="0"/>
-  <br />
-
-    <h4 class="ui horizontal divider header">
-        <i class="calculator icon"></i>
-       Signal Range Calculator
-    </h4>
-
-    <div class="ui placeholder segment">
-  <div class="ui two column very relaxed stackable grid">
-    <div class="column">
-      <div class="ui form">
-
-        <div class="field">
-          <label>Height of antenna transmitter (HTx) in ft</label>
-          <div class="ui left icon input">
-            <input type="text" placeholder="HTx" id="HTx">
-            <i class="arrows alternate vertical pin icon"></i>
+            
+            <div class="ui blue button" id="compute">
+            Calculate
+            </div>
           </div>
         </div>
-
-        <div class="field">
-        <label>Height of antenna receiver (HRx) in ft</label>
-          <div class="ui left icon input">
-            <input type="text" placeholder="HRx" id="HRx">
-            <i class="arrows alternate vertical pin icon"></i>
+        <div class="middle aligned column">
+          <div id='result'>
+            
           </div>
         </div>
-
-        
-
-
-        
-        <div class="ui blue button" id="compute">
-        Calculate
-        </div>
+      </div>
+      <div class="ui vertical divider">
+        <div>Result <i class="arrow right icon"></i></div>
       </div>
     </div>
-    <div class="middle aligned column">
-      <div id='result'>
-        
+
+
+        <h4 class="ui horizontal divider header">
+            <i class="wifi icon"></i>
+            Techno PH
+        </h4>
+
+
+
+      </div>
       </div>
     </div>
-  </div>
-  <div class="ui vertical divider">
-    <div>Result <i class="arrow right icon"></i></div>
-  </div>
-</div>
-
-
-     <h4 class="ui horizontal divider header">
-        <i class="wifi icon"></i>
-        Techno PH
-    </h4>
 
 
 
-  </div>
+  
 
 </body>
 
