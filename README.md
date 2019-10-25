@@ -1,5 +1,10 @@
 # Techno PH Website and Calculators
-
+Thanks for checking out our project.
+\
+\
+Visit our team website [Techno PH](https://technoph.site/).
+\
+\
 A website made with [Flask](https://github.com/pallets/flask) and [Python](https://github.com/python).\
 Contains the calculators and sample simulators.
 
