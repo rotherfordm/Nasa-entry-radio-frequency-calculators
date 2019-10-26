@@ -88,4 +88,16 @@ def storm_data():
 
     return jsonify(r.json()['events'])
 
-    
+@app.route("/attenuation_water", methods=["GET"])
+def attenuation_water():
+    return render_template('attenuation_water.html', title='Attenuation of radio waves in water Calculator')
+
+
+@app.route('/compute_attenuation_water', methods=["POST"])
+def compute_attenuation_water():
+    frequency = float(request.args.get("frequency"))
+    conductivity = float(request.args.get("conductivity"))
+
+    r =  0.0173 * (math.sqrt( frequency * conductivity )) * (1)
+
+    return {"r": r, 'unit': 'dB/metre'}
