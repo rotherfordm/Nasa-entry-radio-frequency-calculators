@@ -1,0 +1,17 @@
+.main-content {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    color: $text;
+    max-width: 90%;
+    padding: 2em 3em;
+
+
+    font-family: 'Open Sans', sans-serif;
+}
+
+canvas {
+    display: block;
+    vertical-align: bottom;
+}
