@@ -8,6 +8,14 @@ Visit our team website [Techno PH](https://technoph.site/).
 A website made with [Flask](https://github.com/pallets/flask) and [Python](https://github.com/python).\
 Contains the calculators and sample simulators.
 
+
+## Table of Contents
+   1. [Installation](https://github.com/HeatzRM/Nasa-entry-radio-frequency-calculators#1-installation)
+   2. [Running on local server](https://github.com/HeatzRM/Nasa-entry-radio-frequency-calculators#2-running-on-local-server)
+   3. [Applicable NASA Data Resources](https://github.com/HeatzRM/Nasa-entry-radio-frequency-calculators#3-applicable-nasa-data-resources)
+   4. [Other Data Resources](https://github.com/HeatzRM/Nasa-entry-radio-frequency-calculators#4-other-data-resources)
+
+
 ## 1. Installation
 
 Install [Python Github](https://github.com/python) or [Python Website](https://www.python.org/)
