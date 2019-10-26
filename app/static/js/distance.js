@@ -15,7 +15,7 @@ $(document).ready(function() {
               Result is:
               <br />
                <br />
-              ${Math.round(eval(result).r * 100) / 100}
+               ${Math.round(eval(result).r * 1.609 * 100) / 100} dB\metre
               
               `);
       },

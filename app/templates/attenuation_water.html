@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% include 'nav.html' %}
+
+<body>
+
+    
+  <div class="ui main  container">
+
+      
+   <div class="ui middle aligned center aligned grid">
+      <img class="logo" src="{{url_for("static",filename='logo_edit.png')}}" style="width: 400px; margin-bottom: 50px; padding-top: 100px; ">
+  </div>
+  
+  <h1 class="ui center aligned header">
+    Attenuation of Radio Waves in Water Calculator
+  </h1>
+
+   <div class="ui middle aligned center aligned grid">
+      <div class="column twelve wide">
+        <br />
+        <h4 class="ui horizontal divider header">
+        <i class="balance scale icon"></i>
+        Formula
+        </h4>
+        <br />
+      
+
+     
+
+      <img src="http://latex.codecogs.com/gif.latex?\variable{Attenuation}=0.0173\times\sqrt{({frequency}\times\variable{conductivity})}\times(1)" border="0"/>
+      <br>
+
+        <h4 class="ui horizontal divider header">
+            <i class="calculator icon"></i>
+          Attenuation of Radio Waves in Water Calculator
+        </h4>
+
+  <div class="ui one column stackable center aligned page grid">
+   <div class="column twelve wide">
+
+      <div class="ui form">
+        <div class="field">
+          <label>Frequency in hertz</label>
+          <div class="ui left icon input">
+            <input type="text" placeholder="frequency" id="frequency">
+            <i class="alternate vertical pin icon"></i>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Conductivity in mhos/metre</label>
+          <div class="ui left icon input">
+            <input type="text" placeholder="conductivity" id="conductivity">
+            <i class="alternate vertical pin icon"></i>
+          </div>
+        </div>
+
+        <div class="ui blue button" id="compute">
+        Calculate
+        </div>
+        <br />
+        <br />
+        <br />
+        <div id='result'></div>
+      </div>
+    </div>
+  </div>
+      
+
+  
+
+
+
+      </div>
+
+  
+
+</body>
+
+<script type=text/javascript src="{{url_for('static', filename='js/attenuation_water.js') }}"></script>
+
+{% endblock %}
