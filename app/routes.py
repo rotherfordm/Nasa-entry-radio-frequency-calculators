@@ -66,20 +66,20 @@ def compute_distance():
     return {"r": r, 'unit': ''}
     
 
-@app.route('/status', methods=["GET", "POST"])
-def status():
+@app.route('/weather_disturbance', methods=["GET", "POST"])
+def weather_disturbance():
     r = requests.get(url="https://eonet.sci.gsfc.nasa.gov/api/v2.1/categories/10")
 
-    return render_template('status.html', title='Status', events=r.json()['events'])
+    return render_template('weather_disturbance.html', title='Weather Disturbance/Outage Status', events=r.json()['events'])
 
 @app.route("/demo_anim", methods=["GET"])
 def demo_anim():
     return render_template('demo_anim.html', title='Demo Animations')
 
 
-@app.route("/map", methods=["GET"])
-def map():
-    return render_template('map.html', title='Map')
+@app.route("/antenna_and_storm_locators", methods=["GET"])
+def antenna_and_storm_locators():
+    return render_template('antenna_and_storm_locators.html', title='Antenna and Storms Locator')
 
 
 @app.route('/storm_data', methods=["GET"])
@@ -101,3 +101,5 @@ def compute_attenuation_water():
     r =  0.0173 * (math.sqrt( frequency * conductivity )) * (1)
 
     return {"r": r, 'unit': 'dB/metre'}
+
+    
