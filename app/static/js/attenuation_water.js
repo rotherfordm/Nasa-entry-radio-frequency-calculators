@@ -14,7 +14,8 @@ $(document).ready(function() {
             <br />
             <br />
             ${eval(result).r} ${eval(result).unit}
-            </p>
+            <br />
+            <br />
             `);
       },
       error: function(result) {

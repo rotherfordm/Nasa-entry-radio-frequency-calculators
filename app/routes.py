@@ -66,11 +66,11 @@ def compute_distance():
     return {"r": r, 'unit': ''}
     
 
-@app.route('/status', methods=["GET", "POST"])
-def status():
+@app.route('/weather_disturbance', methods=["GET", "POST"])
+def weather_disturbance():
     r = requests.get(url="https://eonet.sci.gsfc.nasa.gov/api/v2.1/categories/10")
 
-    return render_template('status.html', title='Status', events=r.json()['events'])
+    return render_template('weather_disturbance.html', title='Weather Disturbance/Outage Status', events=r.json()['events'])
 
 @app.route("/demo_anim", methods=["GET"])
 def demo_anim():
@@ -79,7 +79,7 @@ def demo_anim():
 
 @app.route("/map", methods=["GET"])
 def map():
-    return render_template('map.html', title='Map')
+    return render_template('map.html', title='Antenna and Storms Locator')
 
 
 @app.route('/storm_data', methods=["GET"])
