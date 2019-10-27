@@ -77,9 +77,9 @@ def demo_anim():
     return render_template('demo_anim.html', title='Demo Animations')
 
 
-@app.route("/map", methods=["GET"])
-def map():
-    return render_template('map.html', title='Antenna and Storms Locator')
+@app.route("/antenna_and_storm_locators", methods=["GET"])
+def antenna_and_storm_locators():
+    return render_template('antenna_and_storm_locators.html', title='Antenna and Storms Locator')
 
 
 @app.route('/storm_data', methods=["GET"])
@@ -101,3 +101,5 @@ def compute_attenuation_water():
     r =  0.0173 * (math.sqrt( frequency * conductivity )) * (1)
 
     return {"r": r, 'unit': 'dB/metre'}
+
+    
